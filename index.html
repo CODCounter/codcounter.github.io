@@ -16,6 +16,8 @@
 
 <span style="font-family: 'Roboto Mono', monospace; color:#15bf42; text-shadow: 0 0 3px #53db78;">
 <div class="countup" id="countup1">
+  <span class="timeel years">00</span>
+  <span class="timeel timeRefYears">Years | </span>
   <span class="timeel days">00</span>
   <span class="timeel timeRefDays">Days | </span>
   <span class="timeel hours">00</span>
@@ -34,6 +36,8 @@
 
 <span style="font-family: 'Roboto Mono', monospace; color:#15bf42; text-shadow: 0 0 3px #53db78;">
 <div class="countup" id="countup2">
+  <span class="timeel years">00</span>
+  <span class="timeel timeRefYears">Years | </span>
   <span class="timeel days">00</span>
   <span class="timeel timeRefDays">Days | </span>
   <span class="timeel hours">00</span>
@@ -57,13 +61,16 @@ function countUpFromTime(countFrom, id) {
     
   var secondsInADay = 60 * 60 * 1000 * 24,
       secondsInAHour = 60 * 60 * 1000;
-      
-days = Math.floor(timeDifference / (secondsInADay) * 1);
+    
+  days = Math.floor(timeDifference / (secondsInADay) * 1);
+  years = Math.floor(days / 365);
+  if (years > 1){ days = days - (years * 365) }
   hours = Math.floor((timeDifference % (secondsInADay)) / (secondsInAHour) * 1);
   mins = Math.floor(((timeDifference % (secondsInADay)) % (secondsInAHour)) / (60 * 1000) * 1);
   secs = Math.floor((((timeDifference % (secondsInADay)) % (secondsInAHour)) % (60 * 1000)) / 1000 * 1);
 
   var idEl = document.getElementById(id);
+  idEl.getElementsByClassName('years')[0].innerHTML = years;
   idEl.getElementsByClassName('days')[0].innerHTML = days;
   idEl.getElementsByClassName('hours')[0].innerHTML = hours;
   idEl.getElementsByClassName('minutes')[0].innerHTML = mins;
